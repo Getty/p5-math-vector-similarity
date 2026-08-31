@@ -1,0 +1,6 @@
+claude: true
+prompt: >-
+  Drain the Math-Vector-Similarity karr board. Pick the top actionable ticket,
+  delegate implementation to the math-vector-similarity-worker, run `dzil test`
+  (or `prove -lr t/`), and hand the ticket to review. Never release. Stop when
+  nothing actionable remains.
