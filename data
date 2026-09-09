@@ -1,0 +1,19 @@
+---
+claimed_at: 2026-09-09T05:18:40Z
+claimed_by: p5-math-vector-similarity
+class: standard
+completed: 2026-09-09T05:18:40Z
+created: 2026-08-31T04:01:20Z
+id: 1
+priority: low
+started: 2026-09-09T05:18:40Z
+status: done
+tags:
+- tests
+title: 'Test coverage: zero-vector path for cosine_distance and dot_product'
+updated: 2026-09-09T05:18:40Z
+---
+
+cosine_similarity, normalize and euclidean have zero-vector assertions in t/10_functions.t, but cosine_distance on a zero vector (expected 1 - 0 = 1) and dot_product on a zero vector are not directly asserted. Add the two cases so the zero-vector contract is pinned end to end.
+
+2026-09-09 05:18 Zwei Zero-Vector-Asserts in t/10_functions.t ergaenzt: 'dot product: zero vector = 0' (is ...,0) und 'cosine dist: zero vector = 1' (is ...,1, integer-exakt 1-0). Zero-Vector-Contract jetzt end-to-end gepinnt. dzil test gruen (30 Tests, PASS). Commit 0e1ff2b.
