@@ -7,6 +7,7 @@ is dot_product([1,0,0], [1,0,0]), 1, 'dot product: identical unit vectors';
 is dot_product([1,0,0], [0,1,0]), 0, 'dot product: orthogonal';
 is dot_product([2,3], [4,5]), 23, 'dot product: 2d';
 is dot_product([1,2,3], [4,5,6]), 32, 'dot product: 3d';
+is dot_product([0,0,0], [1,2,3]), 0, 'dot product: zero vector = 0';
 
 # --- normalize ---
 
@@ -57,6 +58,9 @@ ok abs($dist_orth - 1.0) < 1e-9, 'cosine dist: orthogonal = 1';
 
 my $dist_opp = cosine_distance([1,0], [-1,0]);
 ok abs($dist_opp - 2.0) < 1e-9, 'cosine dist: opposite = 2';
+
+# Zero vector: 1 - cosine_similarity == 1 - 0 == 1 (integer-exact)
+is cosine_distance([0,0,0], [1,2,3]), 1, 'cosine dist: zero vector = 1';
 
 # --- euclidean_distance ---
 
