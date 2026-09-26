@@ -30,14 +30,14 @@ Depends on whether the Agent/Task tool is available to you.
 
 - **You can spawn subagents** (orchestrating main agent): Do NOT touch behavior-relevant
   code yourself — delegate. Your lane: coordinate, inspect, plan, review diffs, run tests,
-  manage git, edit non-behavioral docs. Why: only the `math-vector-similarity-*` agents
+  edit non-behavioral docs. Why: only the `math-vector-similarity-*` agents
   get their skills force-loaded via `briefing.skills`; you get no briefing and would touch
   the numeric internals with too little context.
 
   | Task | Agent |
   |---|---|
   | Implement / refactor / debug behavior-relevant code | `math-vector-similarity-worker` (default) |
-  | Pre-release audit | `math-vector-similarity-release-checker` |
+  | Commits, `Changes`, card → done, pre-release audit | `math-vector-similarity-release-manager` |
 
 - **You cannot spawn subagents** (you ARE a `math-vector-similarity-*` agent): The
   delegation lock does not apply — implement, refactor, debug and test per these rules.
@@ -45,6 +45,9 @@ Depends on whether the Agent/Task tool is available to you.
 Behavior-relevant = anything in `lib/`, the tests, the exported function set, the
 dimension/zero-vector contracts, and numeric tolerance. `README.md` and `Changes` wording
 are not.
+
+**Only `math-vector-similarity-release-manager` commits.** A worker leaves a commit-ready tree and hands its card
+to `review`; you then dispatch `math-vector-similarity-release-manager` to cut the commit and close the card.
 
 ## The contracts are the product — don't regress them silently
 
@@ -66,7 +69,7 @@ don't invoke the skill first, just use it. Board state lives in `refs/karr/*`.
 
 Serialize board mutations when fanning out: keep implementation parallel, then loop the
 `karr move`/`handoff`/`sync` calls sequentially. Full command surface: skill
-`kanban-issues-karr-cli`.
+`kanban-issues-karr-coordination`.
 
 ## Release — never without permission
 
