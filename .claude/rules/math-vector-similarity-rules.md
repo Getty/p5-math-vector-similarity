@@ -1,8 +1,9 @@
 # Math::Vector::Similarity House Rules
 
 Apply to every task in this repository unless explicitly overridden. Bias: caution over speed
-on non-trivial work. Loaded automatically at launch (same priority as `CLAUDE.md`); subagents get
-their conventions from `briefing.skills` — this file is for the orchestrating agent.
+on non-trivial work; use judgment on trivial tasks. Loaded automatically at launch (same
+priority as `CLAUDE.md`); subagents get their conventions from `briefing.skills` — this file is
+for the orchestrating agent.
 
 ## Engineering discipline
 
@@ -28,7 +29,7 @@ their conventions from `briefing.skills` — this file is for the orchestrating 
 - **You can spawn subagents** (orchestrating main agent): Do NOT touch behavior-relevant code
   yourself — delegate. Your lane: coordinate, inspect, plan, review diffs, run tests, edit
   non-behavioral docs. Why: only the `math-vector-similarity-*` agents get their skills
-  force-loaded via `briefing.skills`.
+  force-loaded via `briefing.skills`; you get no briefing.
 
   | Task | Agent |
   |---|---|
