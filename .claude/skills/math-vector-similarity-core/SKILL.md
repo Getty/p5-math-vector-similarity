@@ -73,6 +73,28 @@ guards, so fix numeric behavior in one place.
    `[1,2,3]` → `1`) and stays within `[-1, 1]` even at embedding dimensionality (a
    768-dim case is in the suite). Preserve both.
 
+## Working on this module
+
+- **Read the whole file before editing.** It is ~164 lines in one file, and the five functions
+  are one mechanism, not five: `cosine_distance` does no arithmetic of its own.
+- **Keep it flat.** No `Moo`, no class, no `$self` — callers depend on the functional call
+  form and on the `Exporter` contract.
+- **Keep it dependency-free.** Only `Carp` and `Exporter` are used; a new `requires` needs a
+  real justification, because the zero-dependency promise is part of the API.
+- **The layout is part of the contract.** `=func NAME` goes immediately after the `sub`, with
+  a one-line usage example — don't move the POD into a section.
+- **Inputs are never mutated.** `normalize` returns a fresh array, the two-arg functions
+  return scalars.
+- **A looser epsilon is a finding, not a fix.** If a change needs more than `1e-9` to pass,
+  the precision was lost — investigate instead of widening the bound.
+- **Exactness is not accidental.** Integer inputs to `dot_product` are asserted with exact
+  equality, so the accumulation must stay integer-exact; don't reroute it through a
+  float-normalizing path.
+- **The upstream pin matters.** Langertha depends on this distribution; a release here can
+  leave that pin stale — that is a ticket on Langertha's board, never an edit made from here.
+- **The suite is two files.** `t/00_load.t` and `t/10_functions.t`; `Test2::V0` is the only
+  non-core dependency and it lives in the `on test` phase of the `cpanfile`.
+
 ## Tests
 
 `t/00_load.t` (loads the module) and `t/10_functions.t` (all behavior, `Test2::V0`).

@@ -1,9 +1,8 @@
 # Math::Vector::Similarity House Rules
 
-Apply to every task in this repository unless explicitly overridden. Bias: caution over
-speed on non-trivial work; use judgment on trivial tasks. Loaded automatically at launch
-(same priority as `CLAUDE.md`). Subagents get their conventions from the skills
-force-loaded via `briefing.skills` — this file is for the orchestrating agent.
+Apply to every task in this repository unless explicitly overridden. Bias: caution over speed
+on non-trivial work. Loaded automatically at launch (same priority as `CLAUDE.md`); subagents get
+their conventions from `briefing.skills` — this file is for the orchestrating agent.
 
 ## Engineering discipline
 
@@ -26,13 +25,10 @@ force-loaded via `briefing.skills` — this file is for the orchestrating agent.
 
 ## Delegation
 
-Depends on whether the Agent/Task tool is available to you.
-
-- **You can spawn subagents** (orchestrating main agent): Do NOT touch behavior-relevant
-  code yourself — delegate. Your lane: coordinate, inspect, plan, review diffs, run tests,
-  edit non-behavioral docs. Why: only the `math-vector-similarity-*` agents
-  get their skills force-loaded via `briefing.skills`; you get no briefing and would touch
-  the numeric internals with too little context.
+- **You can spawn subagents** (orchestrating main agent): Do NOT touch behavior-relevant code
+  yourself — delegate. Your lane: coordinate, inspect, plan, review diffs, run tests, edit
+  non-behavioral docs. Why: only the `math-vector-similarity-*` agents get their skills
+  force-loaded via `briefing.skills`.
 
   | Task | Agent |
   |---|---|
@@ -43,8 +39,7 @@ Depends on whether the Agent/Task tool is available to you.
   delegation lock does not apply — implement, refactor, debug and test per these rules.
 
 Behavior-relevant = anything in `lib/`, the tests, the exported function set, the
-dimension/zero-vector contracts, and numeric tolerance. `README.md` and `Changes` wording
-are not.
+dimension/zero-vector contracts and numeric tolerance. `README.md` and `Changes` wording are not.
 
 **Only `math-vector-similarity-release-manager` commits.** A worker leaves a commit-ready tree and hands its card
 to `review`; you then dispatch `math-vector-similarity-release-manager` to cut the commit and close the card.
@@ -52,11 +47,10 @@ to `review`; you then dispatch `math-vector-similarity-release-manager` to cut t
 ## The contracts are the product — don't regress them silently
 
 This is a tiny module whose whole value is exact, documented numeric behavior. The
-dimension-mismatch croak (`qr/same dimensions/`), the exact zero-vector guards
-(`normalize` returns its input ref; `cosine_similarity` returns integer `0`), the
-integer-exact `dot_product`, and the `1e-9` float tolerance are all pinned by
-`t/10_functions.t`. A change that needs a looser epsilon to pass lost precision — treat
-that as a finding, not a fix. Full contract table: skill `math-vector-similarity-core`.
+dimension-mismatch croak, the exact zero-vector guards, the integer-exact `dot_product` and the
+`1e-9` float tolerance are pinned by `t/10_functions.t` — a change that needs a looser epsilon
+to pass lost precision: treat that as a finding, not a fix. Full contract table: skill
+`math-vector-similarity-core`.
 
 ## Coordination — karr board (always in scope)
 
@@ -68,8 +62,7 @@ don't invoke the skill first, just use it. Board state lives in `refs/karr/*`.
 - `karr move ID in-progress --claim NAME` — start · `karr handoff ID --claim NAME --note "…"` — to review
 
 Serialize board mutations when fanning out: keep implementation parallel, then loop the
-`karr move`/`handoff`/`sync` calls sequentially. Full command surface: skill
-`kanban-issues-karr-coordination`.
+`karr move`/`handoff`/`sync` calls sequentially. Full surface: skill `kanban-issues-karr-coordination`.
 
 ## Release — never without permission
 
@@ -77,21 +70,19 @@ Serialize board mutations when fanning out: keep implementation parallel, then l
 upload are STRICTLY forbidden without the maintainer's explicit go-ahead — even if a plan
 lists "release" as the next step. Stop and ask.
 
-This distribution is an **upstream**: **Langertha** depends on it. A release here can
-leave that pin stale — that is a ticket on Langertha's board, never an edit made from
-here.
+This distribution is an **upstream**: **Langertha** depends on it. A release here can leave
+that pin stale — that is a ticket on Langertha's board, never an edit made from here.
 
 ## Public issues — never act without instruction
 
 `karr` is the internal agent board, churned freely. Any public tracker (GitHub/Codeberg)
-carries real people's reports, written under the maintainer's account. Never act on a
-public issue on your own initiative — not even to read it. No listing, viewing,
-commenting, closing or creating unless the user explicitly says to handle a specific one.
+carries real people's reports, written under the maintainer's account. Never act on a public
+issue on your own initiative — not even to read it. No listing, viewing, commenting, closing or
+creating unless the user explicitly says to handle a specific one.
 
 ## Perl specifics — reference, don't restate
 
-Module loading, cpanfile pinning for Getty-authored dependencies, POD conventions and
-house style live in skills `getty-perl-core` and `getty-perl-release-author-getty`
-(force-loaded for `math-vector-similarity-*` agents). The function set, export contract
-and numeric invariants live in skill `math-vector-similarity-core`. Do not duplicate them
-here.
+Module loading, cpanfile pinning for Getty-authored dependencies, POD conventions and house
+style live in skills `getty-perl-core` and `getty-perl-release-author-getty` (force-loaded per
+lane via `briefing.skills`); the function set, export contract and numeric invariants live in
+skill `math-vector-similarity-core`. Do not duplicate them here.
