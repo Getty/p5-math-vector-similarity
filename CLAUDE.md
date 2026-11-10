@@ -21,9 +21,9 @@ lanes and hazards are in `.claude/rules/math-vector-similarity-rules.md`.
 
 The agents carry their skills via `briefing.skills` (see `.claude/agents/`); the main
 agent delegates rather than loading them. Skill sources live under `.claude/skills/` —
-`getty-perl-core` and `kanban-issues-karr-coordination` are hardlinked from `~/dev/skills/perl/`
-and `~/dev/karr/`, `getty-perl-release-author-getty` and `perl-release-dist-ini` from the
-shared library; `math-vector-similarity-core` is owned by this repo.
+`math-vector-similarity-core` is owned by this repo; `getty-perl-core`,
+`getty-perl-release-author-getty`, `perl-release-dist-ini` and the `kanban-issues-karr-*`
+skills are installed by skilletor from `.claude/skilletor.json`.
 
 Work is coordinated on the repo's `karr` board (`karr board`).
 
