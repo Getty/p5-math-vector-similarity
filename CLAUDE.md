@@ -11,7 +11,7 @@ The function set, export contract and the numeric/zero-vector invariants live in
 ## Delegation
 
 Delegate behavior-relevant code to the right agent instead of touching it yourself — the
-principle is the shared rule `getty-agent-delegation` (skilletor bundle `getty-cpan-dist@getty`);
+principle is the shared rule `agent-delegation` (skilletor bundle `getty-cpan-dist@getty`);
 lanes and hazards are in `.claude/rules/math-vector-similarity-rules.md`.
 
 | Task | Agent |
