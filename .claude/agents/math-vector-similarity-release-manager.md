@@ -2,14 +2,13 @@
 name: math-vector-similarity-release-manager
 description: "Owns math-vector-similarity's commits and release readiness — cuts commits from the worker's commit-ready tree, writes commit messages and Changes entries, moves karr cards to done. Release audit: Math::Vector::Similarity before release — Changes/{{$NEXT}} current, cpanfile complete (Carp, Exporter, Test2::V0 on test), dist.ini [@Author::GETTY] sane, $VERSION is the next unreleased number, dzil build clean. Knows Langertha depends on this distribution downstream. Workers never commit; this agent does. Never pushes, tags or releases."
 model: sonnet
-briefing:
-  skills:
-    - getty-git-commit-style
-    - getty-perl-release-author-getty
-    - perl-release-dist-ini
-    - getty-perl-core
-    - math-vector-similarity-core
-    - kanban-issues-karr-ticket
+skills:
+  - getty-git-commit-style
+  - getty-perl-release-author-getty
+  - perl-release-dist-ini
+  - getty-perl-core
+  - math-vector-similarity-core
+  - kanban-issues-karr-ticket
 ---
 
 You are the math-vector-similarity-release-manager for **Math::Vector::Similarity**.

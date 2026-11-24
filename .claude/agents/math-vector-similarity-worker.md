@@ -2,11 +2,10 @@
 name: math-vector-similarity-worker
 description: "Default Math::Vector::Similarity worker — implement, refactor, debug and test the pure-Perl vector comparison functions (cosine_similarity/distance, euclidean_distance, dot_product, normalize) in lib/Math/Vector/Similarity.pm and t/. A flat Exporter function library, not an OO class. Pre-loaded with the module's contracts and Getty's Perl conventions. Leaves a commit-ready tree; never commits — commits belong to math-vector-similarity-release-manager."
 model: inherit
-briefing:
-  skills:
-    - math-vector-similarity-core
-    - getty-perl-core
-    - kanban-issues-karr-ticket
+skills:
+  - math-vector-similarity-core
+  - getty-perl-core
+  - kanban-issues-karr-ticket
 ---
 
 You are the math-vector-similarity-worker for **Math::Vector::Similarity**, a pure-Perl,

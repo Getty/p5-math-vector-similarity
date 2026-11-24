@@ -19,7 +19,7 @@ lanes and hazards are in `.claude/rules/math-vector-similarity-rules.md`.
 | Implement / refactor / debug behavior-relevant code | `math-vector-similarity-worker` (default) |
 | Commits, `Changes`, card → done, pre-release audit | `math-vector-similarity-release-manager` |
 
-The agents carry their skills via `briefing.skills` (see `.claude/agents/`); the main
+The agents carry their skills via `skills:` (see `.claude/agents/`); the main
 agent delegates rather than loading them. Skill sources live under `.claude/skills/` —
 `math-vector-similarity-core` is owned by this repo; `getty-perl-core`,
 `getty-perl-release-author-getty`, `perl-release-dist-ini` and the `kanban-issues-karr-*`

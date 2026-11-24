@@ -39,5 +39,5 @@ pin stale — that is a ticket on Langertha's board, never an edit made from her
 
 Module loading, cpanfile pinning for Getty-authored dependencies, POD conventions and house
 style live in skills `getty-perl-core` and `getty-perl-release-author-getty` (force-loaded per
-lane via `briefing.skills`); the function set, export contract and numeric invariants live in
+lane via `skills:`); the function set, export contract and numeric invariants live in
 skill `math-vector-similarity-core`.
